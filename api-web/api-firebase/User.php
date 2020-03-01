@@ -52,11 +52,11 @@ class User {
     }
 }
 
-$user = new User();
+// $user = new User();
 
-// var_dump($user->insert([
-//     "1" => "john",
-//     "2" => "asu"
-// ]));
+// // var_dump($user->insert([
+// //     "1" => "john",
+// //     "2" => "asu"
+// // ]));
 
-var_dump($user->delete(2));
+// var_dump($user->delete(2));
