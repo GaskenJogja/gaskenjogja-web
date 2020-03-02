@@ -8,6 +8,8 @@ $user = new User();
 //     "10" => "tes"
 // );
 
+echo json_encode($user->getAll("users"));
+
 // if(true){
 
 //     var_dump($user->insert([

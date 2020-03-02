@@ -50,4 +50,10 @@ class User {
         }
 
     }
+
+    public function getAll($dbname){
+        if(empty($dbname) || !isset($dbname)){ return false;}
+
+        return $this->database->getReference($dbname)->getValue();
+    }
 }
