@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -310,42 +311,32 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
+                      <th>id wisata</th>
+                      <th>Nama wisata</th>
+                      <th>Alamat</th>
+                      <th>QR code</th>
+                      <th>Harga</th>
+                      <th>Gambar</th>
+                      <th>lat</th>
+                      <th>lon</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
+                      <th>id wisata</th>
+                      <th>Nama wisata</th>
+                      <th>Alamat</th>
+                      <th>QR code</th>
+                      <th>Harga</th>
+                      <th>Gambar</th>
+                      <th>lat</th>
+                      <th>lon</th>
                     </tr>
                   </tfoot>
-                  <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                    </tr>
+                  <tbody id="tbody-wisata">
                     
-                    <tr>
-                      <td>Donna Snider</td>
-                      <td>Customer Support</td>
-                      <td>New York</td>
-                      <td>27</td>
-                      <td>2011/01/25</td>
-                      <td>$112,000</td>
-                    </tr>
+                    <tr></tr>
+                    
                   </tbody>
                 </table>
               </div>
@@ -398,8 +389,11 @@
     </div>
   </div>
 
-  <!-- Bootstrap core JavaScript-->
   <script src="../vendor/jquery/jquery.min.js"></script>
+
+
+  <!-- Bootstrap core JavaScript-->
+  
   <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Core plugin JavaScript-->
@@ -414,7 +408,35 @@
 
   <!-- Page level custom scripts -->
   <script src="../js/demo/datatables-demo.js"></script>
-
+  
+  <script>
+  $(document).ready(function(){
+    $.get('../../api-web/api-mysql/product/wisata-get-data.php', function(data){
+      var json = $.parseJSON(data)
+        $(json).each(function(i, wisata){
+          $('#tbody-wisata').append($('<tr>')
+            .append($('<td>').append(wisata.id_wisata))
+            .append($('<td>').append(wisata.nama_wisata))
+            .append($('<td>').append(wisata.alamat))
+            .append($('<td>').append(wisata.Qrcode))
+            .append($('<td>').append(wisata.harga))
+            .append($('<td>').append(wisata.gambar))
+            .append($('<td>').append(wisata.lat))
+            .append($('<td>').append(wisata.lon))
+          );
+        })
+      })
+      // .done(function(){
+      //   alert('Behasil')
+      // })
+      // .fail(function(){
+      //   console.error(e)
+      // })
+      // .always(function(){
+      //   alert('always run')
+      // })
+    });
+  </script>
 </body>
 
 </html>

@@ -12,14 +12,14 @@ $wisata = new Wisata($db);
 
 $result = $wisata->getAllData();
 $num = $result->rowCount();
- 
+
+$wisata_arr=array();
 // check if more than 0 record found
 if($num>0){
  
     // wisata array
-    $wisata_arr=array();
     $wisata_arr["records"]=array();
- 
+    // $wisata_arr["row"]= $num;
     // retrieve our table contents
     // fetch() is faster than fetchAll()
     // http://stackoverflow.com/questions/2770630/pdofetchall-vs-pdofetch-in-a-loop
@@ -47,7 +47,7 @@ if($num>0){
     http_response_code(200);
  
     // show wisata data in json format
-    echo json_encode($wisata_arr);
+    echo json_encode($wisata_arr["records"]);
 }
 else{
  

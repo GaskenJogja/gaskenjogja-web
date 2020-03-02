@@ -15,11 +15,13 @@
   <link href="../vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
+  
   <!-- Custom styles for this template -->
   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
 
   <!-- Custom styles for this page -->
   <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../lib/leaflet/leaflet.css">
 
 </head>
 
@@ -297,16 +299,18 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Data Wisata</h1>
-          <p class="mb-4">Data Wisata yang sudah terintegrasi dengan Sistem</p>
+          <!-- <h1 class="h3 mb-2 text-gray-800">Lokasi Wisata</h1> -->
+          <!-- <p class="mb-4">Data Wisata yang sudah terintegrasi dengan Sistem</p> -->
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Table Wisata</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Lokasi Wisata</h6>
             </div>
+
+            <!-- leaftlet js -->
             <div class="card-body">
-              
+              <div id="leaflet" style="height: 500px; width: 100%"></div>
             </div>
           </div>
 
@@ -372,6 +376,19 @@
 
   <!-- Page level custom scripts -->
   <script src="../js/demo/datatables-demo.js"></script>
+  <script src="../lib/leaflet/leaflet.js"></script>
+  <script>
+
+    var mymap = L.map('leaflet').setView([-7.803249, 110.3398252], 10);
+
+    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    accessToken: 'your.mapbox.access.token'
+    }).addTo(mymap);
+
+  </script>
 
 </body>
 
