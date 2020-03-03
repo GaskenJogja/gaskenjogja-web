@@ -26,5 +26,15 @@ class User{
 
         return $result;
     }
+
+    public function userSession($username, $password){
+        $query = "SELECT * FROM user where username = $username and password = $password";
+
+        $result = $this->conn->prepare($query);
+
+        $result->execute();
+
+        return $result;
+    }
 }
 ?>
