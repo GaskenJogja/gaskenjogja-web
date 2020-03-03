@@ -10,7 +10,7 @@ class User {
     
 
     public function __construct(){
-        $acc = ServiceAccount::fromJsonFile(__DIR__.'/secret/gaskenjogja-9879d41e0f3f.json');
+        $acc = ServiceAccount::fromJsonFile(__DIR__.'/secret/gaskenjogja-8952e-fdacdaea45be.json');
         $firebase = (new Factory)->withServiceAccount($acc)->create();
 
         $this->database = $firebase->getDatabase();
