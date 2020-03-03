@@ -110,12 +110,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/giggsey/libphonenumber-for-php.git",
-                "reference": "095dc721e8a090124b69005b14c1aeec93141c86"
+                "reference": "d429c468fdc8d7b68aefc6f5a2cb7fee0cc26ee9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/095dc721e8a090124b69005b14c1aeec93141c86",
-                "reference": "095dc721e8a090124b69005b14c1aeec93141c86",
+                "url": "https://api.github.com/repos/giggsey/libphonenumber-for-php/zipball/d429c468fdc8d7b68aefc6f5a2cb7fee0cc26ee9",
+                "reference": "d429c468fdc8d7b68aefc6f5a2cb7fee0cc26ee9",
                 "shasum": ""
             },
             "require": {
@@ -170,7 +170,7 @@
                 "phonenumber",
                 "validation"
             ],
-            "time": "2020-03-02T09:12:35+00:00"
+            "time": "2020-02-12T11:21:37+00:00"
         },
         {
             "name": "giggsey/locale",
@@ -664,12 +664,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kreait/firebase-php.git",
-                "reference": "c3881b0c7327ebd2ca5cb111edab627e08cab037"
+                "reference": "208a5d0ee83a0f4c895e59e1b48eded7cb205e5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kreait/firebase-php/zipball/c3881b0c7327ebd2ca5cb111edab627e08cab037",
-                "reference": "c3881b0c7327ebd2ca5cb111edab627e08cab037",
+                "url": "https://api.github.com/repos/kreait/firebase-php/zipball/208a5d0ee83a0f4c895e59e1b48eded7cb205e5c",
+                "reference": "208a5d0ee83a0f4c895e59e1b48eded7cb205e5c",
                 "shasum": ""
             },
             "require": {
@@ -735,7 +735,7 @@
                 "google",
                 "sdk"
             ],
-            "time": "2020-03-02T17:03:20+00:00"
+            "time": "2020-02-29T11:25:17+00:00"
         },
         {
             "name": "kreait/firebase-tokens",

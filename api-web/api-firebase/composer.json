@@ -1,12 +1,12 @@
 {
     "name": "arief/api-firebase",
-    "description": "api untuk firebase",
+    "description": "firebase wen gaskenjogja",
     "type": "project",
     "license": "GNU3",
     "authors": [
         {
-            "name": "gaskenjogja",
-            "email": "gaskenjogja@gmail.com"
+            "name": "gaskenjogja Systems",
+            "email": "admin@gaskenjogja.systems"
         }
     ],
     "minimum-stability": "dev",
