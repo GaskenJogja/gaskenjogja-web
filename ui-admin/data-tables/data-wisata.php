@@ -311,10 +311,10 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>id wisata</th>
-                      <th>Nama wisata</th>
+                      <th>Id</th>
+                      <th>Nama</th>
                       <th>Alamat</th>
-                      <th>QR code</th>
+                      <th>QRcode</th>
                       <th>Harga</th>
                       <th>Gambar</th>
                       <th>lat</th>
@@ -323,10 +323,10 @@
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>id wisata</th>
-                      <th>Nama wisata</th>
+                      <th>Id</th>
+                      <th>Nama</th>
                       <th>Alamat</th>
-                      <th>QR code</th>
+                      <th>QRcode</th>
                       <th>Harga</th>
                       <th>Gambar</th>
                       <th>lat</th>
@@ -335,8 +335,10 @@
                   </tfoot>
                   <tbody id="tbody-wisata">
                     
-                    <tr></tr>
-                    
+                    <!-- <tr>
+                      <td></td>
+                    </tr> -->
+                    <script></script>
                   </tbody>
                 </table>
               </div>
