@@ -26,12 +26,12 @@ header('Content-Type: application/json');
 
 $charge_result = chargeAPI($api_url, $server_key, $request_body);
 
-http_response_code($charge_result);
+http_response_code($charge_result['http_code']);
 
 echo $charge_result['body'];
 
 function chargeAPI($api_url, $server_key, $request_body){
-    $ch = $curl_init();
+    $ch = curl_init();
     $curl_options = array(
         CURLOPT_URL => $api_url,
         CURLOPT_RETURNTRANSFER => 1,

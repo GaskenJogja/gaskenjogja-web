@@ -27,6 +27,16 @@ class User{
         return $result;
     }
 
+    public function getJumlah(){
+        $query = "SELECT id_user FROM user";
+
+        $result = $this->conn->prepare($query);
+
+        $result->execute();
+
+        return $result;
+    }
+
     public function userSession($username, $password){
         $query = "SELECT * FROM user where username = $username and password = $password";
 

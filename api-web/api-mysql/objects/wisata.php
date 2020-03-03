@@ -29,5 +29,15 @@ class Wisata{
 
         return $result;
     }
+
+    public function getJumlah(){
+        $query = "SELECT id_wisata FROM wisata";
+
+        $result = $this->conn->prepare($query);
+
+        $result->execute();
+
+        return $result;
+    }
 }
 ?>
