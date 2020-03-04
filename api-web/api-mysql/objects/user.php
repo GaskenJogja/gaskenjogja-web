@@ -38,7 +38,7 @@ class User{
     }
 
     public function userSession($username, $password){
-        $query = "SELECT * FROM user where username = $username and password = $password";
+        $query = "SELECT id_user FROM user where username = $username and password = $password";
 
         $result = $this->conn->prepare($query);
 

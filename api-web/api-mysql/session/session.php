@@ -4,30 +4,31 @@
     
     // menghubungkan dengan koneksi
     include_once '../config/database.php';
-    include_once '../objects/user.php';
+    include_once '../objects/admin.php';
  
 // instantiate database and user object
     $database = new Database();
     $db = $database->getConnection();
+    // $username = $_POST['username'];
     
     if( isset($_POST['username']) || isset($_POST['password']) ){
         $username = $_POST['username'];
         $password = $_POST['password'];
         
         // menyeleksi data admin dengan username dan password yang sesuai
-        $user = new User($db);
+        $admin = new Admin($db);
 
-        $result = $user->getAllData();
+        $result = $admin->adminSession($username, $password);
         $num = $result->rowCount();
 
         if($num > 0){
             $_SESSION['username'] = $username;
             $_SESSION['status'] = "login";
-            header("location: /admin.php");
+            header("location: ../../../ui-admin/index.php");
         }else{
-            header("location: /ui-admin/login.php");
+            header("location: ../../../ui-admin/login.php");
         }
     }else{
-        header("location: /ui-admin/login.php?message=noisset");
+        header("location: ../../../ui-admin/login.php?message=noisset");
     }
 ?>
