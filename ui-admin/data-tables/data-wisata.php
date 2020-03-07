@@ -18,6 +18,7 @@
 
   <!-- Custom styles for this template -->
   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
+  <!-- <link href="../css/custom.css" rel="stylesheet"> -->
 
   <!-- Custom styles for this page -->
   <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -67,9 +68,9 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-            <a class="collapse-item" href="data-tables/data-wisata.php">Wisata</a>
-            <a class="collapse-item" href="data-tables/data-user.php">User</a>
-            <a class="collapse-item" href="data-tables/data-transaksi.php">Transaksi</a>
+            <a class="collapse-item" href="data-wisata.php">Wisata</a>
+            <a class="collapse-item" href="data-user.php">User</a>
+            <a class="collapse-item" href="data-transaksi.php">Transaksi</a>
           </div>
         </div>
       </li>
@@ -302,46 +303,40 @@
           <p class="mb-4">Data Wisata yang sudah terintegrasi dengan Sistem</p>
 
           <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Table Wisata</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Id</th>
-                      <th>Nama</th>
-                      <th>Alamat</th>
-                      <th>QRcode</th>
-                      <th>Harga</th>
-                      <th>Gambar</th>
-                      <th>lat</th>
-                      <th>lon</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Id</th>
-                      <th>Nama</th>
-                      <th>Alamat</th>
-                      <th>QRcode</th>
-                      <th>Harga</th>
-                      <th>Gambar</th>
-                      <th>lat</th>
-                      <th>lon</th>
-                    </tr>
-                  </tfoot>
-                  <tbody id="tbody-wisata">
-                    
-                    <!-- <tr>
-                      <td></td>
-                    </tr> -->
-                    <script></script>
-                  </tbody>
-                </table>
+          <div class="row">
+            <div class="col-xl-4 col-lg-7">
+              <div class="card shadow mb-4">
+              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary ">Hutan Pinus Pengger</h6>
               </div>
+              <div class="card-body">
+                <img src="../img/logo-gasken-awan-aja.png" class="img-fluid image" alt="">
+                
+                
+                  <!-- <div class="text">Hello World</div> -->
+                  <div class="justify-content-space-between">
+                  <a href="#" class="btn btn-danger btn-circle">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-trash"></i>
+                    </span>
+                    <!-- <span class="text">Split Button Primary</span> -->
+                </a>
+                <a href="#" class="btn btn-danger btn-circle">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-trash"></i>
+                    </span>
+                    <!-- <span class="text">Split Button Primary</span> -->
+                </a>
+                </div>
+                <div class="card-body"></div>
+                
+                
+                <!-- <p>almat</p>
+                <p>HP001</p>
+                <p>0.9235925</p>
+                <p>0.9235925</p> -->
+              </div>
+          </div>
             </div>
           </div>
 
@@ -412,22 +407,22 @@
   <script src="../js/demo/datatables-demo.js"></script>
   
   <script>
-  $(document).ready(function(){
-    $.get('../../api-web/api-mysql/product/wisata-get-data.php', function(data){
-      var json = $.parseJSON(data)
-        $(json).each(function(i, wisata){
-          $('#tbody-wisata').append($('<tr>')
-            .append($('<td>').append(wisata.id_wisata))
-            .append($('<td>').append(wisata.nama_wisata))
-            .append($('<td>').append(wisata.alamat))
-            .append($('<td>').append(wisata.Qrcode))
-            .append($('<td>').append(wisata.harga))
-            .append($('<td>').append(wisata.gambar))
-            .append($('<td>').append(wisata.lat))
-            .append($('<td>').append(wisata.lon))
-          );
-        })
-      })
+  // $(document).ready(function(){
+  //   $.get('../../api-web/api-mysql/product/wisata-get-data.php', function(data){
+  //     var json = $.parseJSON(data)
+  //       $(json).each(function(i, wisata){
+  //         $('#tbody-wisata').append($('<tr>')
+  //           .append($('<td>').append(wisata.id_wisata))
+  //           .append($('<td>').append(wisata.nama_wisata))
+  //           .append($('<td>').append(wisata.alamat))
+  //           .append($('<td>').append(wisata.Qrcode))
+  //           .append($('<td>').append(wisata.harga))
+  //           .append($('<td>').append(wisata.gambar))
+  //           .append($('<td>').append(wisata.lat))
+  //           .append($('<td>').append(wisata.lon))
+  //         );
+  //       })
+  //     })
       // .done(function(){
       //   alert('Behasil')
       // })

@@ -35,9 +35,12 @@ if($num>0){
             "alamat" => $alamat,
             "Qrcode" => $QRcode,
             "harga" => $harga,
-            "gambar" => $gambar,
+            "gambar" => base64_encode($gambar),
             "lat" => $lat,
-            "lon" => $lon
+            "lon" => $lon,
+            "jam_buka" => $jam_buka,
+            "jam_tutup" => $jam_tutup
+
         );
  
         array_push($wisata_arr["records"], $wisata_item);

@@ -14,6 +14,8 @@ class Wisata{
     public $gambar;
     public $lat;
     public $lon;
+    public $jam_buka;
+    public $jam_tutup;
  
     // constructor with $db as database connection
     public function __construct($db){
