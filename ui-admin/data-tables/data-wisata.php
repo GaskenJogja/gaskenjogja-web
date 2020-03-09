@@ -1,3 +1,8 @@
+<?php
+  require_once '../../api-web/api-mysql/config/database.php';
+  require_once '../../api-web/api-mysql/objects/wisata.php';
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +23,7 @@
 
   <!-- Custom styles for this template -->
   <link href="../css/sb-admin-2.min.css" rel="stylesheet">
-  <!-- <link href="../css/custom.css" rel="stylesheet"> -->
+  <link href="../css/custom.css" rel="stylesheet">
 
   <!-- Custom styles for this page -->
   <link href="../vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -296,49 +301,92 @@
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
-        <div class="container-fluid">
+        <div class="container-fluid " data-spy="scroll">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Data Wisata</h1>
-          <p class="mb-4">Data Wisata yang sudah terintegrasi dengan Sistem</p>
+          <!-- <h1 class="h3 mb-2 text-gray-800">Data Wisata</h1>
+          <p class="mb-4">Data Wisata yang sudah terintegrasi dengan Sistem</p> -->
 
           <!-- DataTales Example -->
           <div class="row">
+          <?php
+            $database = new Database();
+            $db = $database->getConnection();
+            
+            // initialize object
+            $wisata = new Wisata($db);
+            
+            $result = $wisata->getAllData();
+            $num = $result->rowCount();
+
+            while ($row = $result->fetch(PDO::FETCH_ASSOC)){
+              extract($row);
+            
+          ?>
             <div class="col-xl-4 col-lg-7">
               <div class="card shadow mb-4">
-              <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary ">Hutan Pinus Pengger</h6>
-              </div>
-              <div class="card-body">
-                <img src="../img/logo-gasken-awan-aja.png" class="img-fluid image" alt="">
+
+              <div class="card-body border-bottom-primary">
+                <!-- <div class="position-relative">  -->
                 
-                
-                  <!-- <div class="text">Hello World</div> -->
-                  <div class="justify-content-space-between">
-                  <a href="#" class="btn btn-danger btn-circle">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-trash"></i>
-                    </span>
-                    <!-- <span class="text">Split Button Primary</span> -->
-                </a>
-                <a href="#" class="btn btn-danger btn-circle">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-trash"></i>
-                    </span>
-                    <!-- <span class="text">Split Button Primary</span> -->
-                </a>
+                <div class="position-absolute custom-overlay">
+                  
                 </div>
-                <div class="card-body"></div>
+                <div class="position-absolute custom-overlay-content">
+                  <p class="p-2 custom-h6 text-primary"><?php echo $nama_wisata ?></p>
+                  <p class="p-2 custom-text text-danger"><span><?php echo $jam_buka ?></span> : <span><?php echo $jam_tutup ?></span></p>
+                </div>
                 
-                
-                <!-- <p>almat</p>
-                <p>HP001</p>
-                <p>0.9235925</p>
-                <p>0.9235925</p> -->
+                <div class="">
+                  <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $gambar ).'" class="custom-image" />'; ?>
+                </div>
+                  <!-- <div class="text">Hello World</div> -->
+                  <div class="text-center mt-3">
+                  <a href="" class="btn btn-success btn-circle mx-1">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-edit text-white"></i>
+                    </span>
+                    <!-- <span class="text">Split Button Primary</span> -->
+                  </a>
+                  <a href="#" class="btn btn-warning btn-circle  mx-1">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-edit text-white"></i>
+                    </span>
+                    <!-- <span class="text">Split Button Primary</span> -->
+                  </a>
+                  <a href="#" class="btn btn-danger btn-circle  mx-1">
+                    <span class="icon text-white-50">
+                      <i class="fas fa-trash text-white"></i>
+                    </span>
+                    <!-- <span class="text">Split Button Primary</span> -->
+                  </a>
+                </div>
               </div>
-          </div>
             </div>
+            
+            </div>
+            <?php
+            }
+          ?>
+            <!-- tutup col -->
+            
+            
+            
           </div>
+          <!-- tutup row -->
+          <!-- <div class="row" id="card-row">
+          
+            <div class="col-xl-4 col-lg-7" id="card-col">
+              <div class="card shadow mb-4" id="card-shadow">
+                <div class="card-header py-3 d-flex flex-row" id="card-header">
+                    <h6 class="m-0 font-weight-bold text-primary " id="card-h6">Hutan Pinus Pengger</h6>
+                </div>
+              </div>
+            <div>
+            
+          </div> -->
+
+          
 
         </div>
         <!-- /.container-fluid -->
@@ -407,6 +455,41 @@
   <script src="../js/demo/datatables-demo.js"></script>
   
   <script>
+    // $(document).ready(function(){
+    //   $.get('../../api-web/api-mysql/product/wisata-get-data.php', function(data){
+    //     var json = $.parseJSON(data)
+    //     // alert(json.length)
+    //     var new_card = "";
+    //     var a = 1
+    //     $(json).each(function(i, wisata){
+    //       new_card += '<div class="col-xl-4 col-lg-7" id="card-col">';
+    //       new_card +=   '<div class="card shadow mb-4" id="card-shadow">';
+    //       new_card +=     '<div class="card-header py-3 d-flex flex-row" id="card-header">';
+    //       new_card +=       '<h6 class="m-0 font-weight-bold text-primary" id="card-h6">';
+    //       new_card +=         wisata.id_wisata;
+    //       new_card +=       '</h6>';
+    //       new_card +=     '</div>';
+    //       new_card +=   '</div>';
+    //       new_card += '</div>';
+
+    //       $('#card-col').remove();
+    //       $('#card-shadow').remove();
+    //       $('#card-header').remove();
+    //       $('#card-h6').remove();
+    //       $('#card-row').append(new_card);
+    //       // alert(a++)
+
+    //         // new_card.append("<div class='col-xl-4 col-lg-7'>")
+    //         //   .append("<div class='card shadow mb-4'>")
+    //         //   .append("<div class='card-header py-3 d-flex flex-row'> asu </div>")
+    //     })
+    //     // alert(new_card)
+    //     // for(let i = 0; json.length; i++){
+
+    //     // }
+    //   })
+    // })
+
   // $(document).ready(function(){
   //   $.get('../../api-web/api-mysql/product/wisata-get-data.php', function(data){
   //     var json = $.parseJSON(data)
@@ -432,7 +515,7 @@
       // .always(function(){
       //   alert('always run')
       // })
-    });
+    // });
   </script>
 </body>
 
