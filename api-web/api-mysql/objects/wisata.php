@@ -41,5 +41,44 @@ class Wisata{
 
         return $result;
     }
+
+    public function deleteWisata($id_wisata){
+        $query = "DELETE FROM wisata where id_wisata = $id_wisata";
+
+        $result = $this->conn->prepare($query);
+
+        $result->execute();
+
+        return $result;
+    }
+
+    public function updateWisata($id_wisata, $nama_wisata, $alamat, $QRcode, $harga, $lat, $lon, $jam_buka, $jam_tutup){
+        $query = "UPDATE wisata 
+            SET nama_wisata = $nama_wisata,
+                alamat = $alamat,
+                QRcode = $QRcode,
+                harga = $harga,
+                lat = $lat,
+                lot = $lon,
+                jam_buka = $jam_buka,
+                jam_tutup = $jam_tutup
+            WHERE id_wisata = $id_wisata";
+        
+        $result = $this->conn->prepare($query);
+
+        $result->execute();
+
+        return $result;
+    }
+
+    public function insertData($nama_wisata, $alamat, $gambar, $QRcode, $harga, $lat, $lon, $jam_buka, $jam_tutup){
+        $query = "INSERT INTO wisata VALUES(NULL, $nama_wisata, $alamat, $gambar, $QRcode, $harga, $lat, $lon, $jam_buka, $jam_tutup)";
+
+        $result = $this->conn->prepare($query);
+
+        $result->execute();
+
+        return $result;
+    }
 }
 ?>

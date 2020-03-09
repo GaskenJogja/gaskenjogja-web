@@ -306,7 +306,12 @@
           <!-- Page Heading -->
           <!-- <h1 class="h3 mb-2 text-gray-800">Data Wisata</h1>
           <p class="mb-4">Data Wisata yang sudah terintegrasi dengan Sistem</p> -->
-
+          <a href="" class="btn btn-primary btn-icon-split mb-3">
+            <span class="icon text-white-50">
+              <i class="fas fa-plus"></i>
+            </span>
+            <span class="text">Tambah Wisata</span>
+          </a>
           <!-- DataTales Example -->
           <div class="row">
           <?php
@@ -320,7 +325,9 @@
             $num = $result->rowCount();
 
             while ($row = $result->fetch(PDO::FETCH_ASSOC)){
+              
               extract($row);
+              
             
           ?>
             <div class="col-xl-4 col-lg-7">
@@ -337,29 +344,34 @@
                   <p class="p-2 custom-text text-danger"><span><?php echo $jam_buka ?></span> : <span><?php echo $jam_tutup ?></span></p>
                 </div>
                 
-                <div class="">
+                <div>
                   <?php echo '<img src="data:image/jpeg;base64,'.base64_encode( $gambar ).'" class="custom-image" />'; ?>
                 </div>
                   <!-- <div class="text">Hello World</div> -->
                   <div class="text-center mt-3">
-                  <a href="" class="btn btn-success btn-circle mx-1">
+                  <a href="#" class="btn btn-success btn-circle mx-1"  onclick="onClickUpdate({
+                      'id_wisata' : '<?= $id_wisata ?>',
+                      'nama_wisata' : '<?= $nama_wisata ?>',
+                      'alamat' : '<?= $alamat ?>',
+                      'QRcode' : '<?= $QRcode ?>',
+                      'harga' : '<?= $harga ?>',
+                      'lat' : '<?= $lat ?>',
+                      'lon' : '<?= $lon ?>',
+                      'jam_buka' : '<?= $jam_buka ?>',
+                      'jam_tutup' : '<?= $jam_tutup ?>'
+                      })" data-toggle="modal" data-target="#modalUpdate">
                     <span class="icon text-white-50">
                       <i class="fas fa-edit text-white"></i>
                     </span>
                     <!-- <span class="text">Split Button Primary</span> -->
                   </a>
-                  <a href="#" class="btn btn-warning btn-circle  mx-1">
-                    <span class="icon text-white-50">
-                      <i class="fas fa-edit text-white"></i>
-                    </span>
-                    <!-- <span class="text">Split Button Primary</span> -->
-                  </a>
-                  <a href="#" class="btn btn-danger btn-circle  mx-1">
+                  <a href="#" class="btn btn-danger btn-circle  mx-1" data-id="<?= $id_wisata ?>"  onclick="onClickDelete(this, '<?= $nama_wisata ?>')" data-toggle="modal" data-target="#modalDelete">
                     <span class="icon text-white-50">
                       <i class="fas fa-trash text-white"></i>
                     </span>
                     <!-- <span class="text">Split Button Primary</span> -->
                   </a>
+                  
                 </div>
               </div>
             </div>
@@ -373,18 +385,6 @@
             
             
           </div>
-          <!-- tutup row -->
-          <!-- <div class="row" id="card-row">
-          
-            <div class="col-xl-4 col-lg-7" id="card-col">
-              <div class="card shadow mb-4" id="card-shadow">
-                <div class="card-header py-3 d-flex flex-row" id="card-header">
-                    <h6 class="m-0 font-weight-bold text-primary " id="card-h6">Hutan Pinus Pengger</h6>
-                </div>
-              </div>
-            <div>
-            
-          </div> -->
 
           
 
@@ -432,7 +432,91 @@
         </div>
       </div>
     </div>
+
+
+
   </div>
+
+              <!-- Modal -->
+<div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"><span  id="delete-modal-title"></span> - <span  id="name-modal-title"></span></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Hapus data
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" onclick="confirmDelete()">Hapus</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- tutup modal -->
+
+              <!-- Modal -->
+  <div class="modal fade" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLong" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Update</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="">Id Wisata</label>
+            <input type="text" class="form-control" id="id-wisata" readOnly>
+          </div>
+          <div class="form-group">
+            <label for="">Nama Wisata</label>
+            <input type="text" class="form-control" id="nama-wisata">
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Alamat</label>
+            <textarea class="form-control" rows="3" id="alamat-wisata"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="">QR Code</label>
+            <input type="text" class="form-control" id="qrcode-wisata">
+          </div>
+          <div class="form-group">
+            <label for="">Harga</label>
+            <input type="text" class="form-control" id="harga-wisata">
+          </div>
+          <div class="form-group">
+            <label for="">Latitude</label>
+            <input type="text" class="form-control" id="lat-wisata">
+          </div>
+          <div class="form-group">
+            <label for="">Lontitude</label>
+            <input type="text" class="form-control" id="lon-wisata">
+          </div>
+          <div class="form-group">
+            <label for="">Jam Buka</label>
+            <input type="text" class="form-control" id="jam-buka-wisata">
+          </div>
+          <div class="Jam Tutup">
+            <label for="">Jam Tutup</label>
+            <input type="text" class="form-control" id="jam-tutup-wisata">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" onclick="confirmUpdate()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- tutup modal -->
 
   <script src="../vendor/jquery/jquery.min.js"></script>
 
@@ -455,6 +539,77 @@
   <script src="../js/demo/datatables-demo.js"></script>
   
   <script>
+  // delete
+  var title = document.getElementById('delete-modal-title')
+  function onClickDelete(d, name){
+    // alert(d.getAttribute("data-id"))
+    var name_title = document.getElementById('name-modal-title')
+    
+    title.innerHTML = d.getAttribute("data-id")
+    name_title.innerHTML = name
+  }
+
+  function confirmDelete(){
+    $.ajax({
+      type: "POST",
+      url: "../../api-web/api-mysql/product/crud-wisata.php",
+      data: {"crud" : "delete","id_wisata" : title.innerHTML },
+      success: function(data) {
+        alert(data)
+        window.location.reload(1)
+      }
+    });
+
+  }
+  // tutup delete
+
+  // update row
+  var id_wisata = document.getElementById('id-wisata')
+  var nama_wisata = document.getElementById('nama-wisata')
+    var alamat_wisata = document.getElementById('alamat-wisata')
+    var qrcode_wisata = document.getElementById('qrcode-wisata')
+    var harga_wisata = document.getElementById('harga-wisata')
+    var lat_wisata = document.getElementById('lat-wisata')
+    var lon_wisata = document.getElementById('lon-wisata')
+    var jam_buka_wisata = document.getElementById('jam-buka-wisata')
+    var jam_tutup_wisata = document.getElementById('jam-tutup-wisata')
+
+  function onClickUpdate(wisata){
+    // alert(wisata["nama_wisata"])
+    id_wisata.value = wisata["id_wisata"]
+    nama_wisata.value = wisata["nama_wisata"]
+    alamat_wisata.value = wisata["alamat"]
+    qrcode_wisata.value = wisata["QRcode"]
+    harga_wisata.value = wisata["harga"]
+    lat_wisata.value = wisata["lat"]
+    lon_wisata.value = wisata["lon"]
+    jam_buka_wisata.value = wisata["jam_buka"]
+    jam_tutup_wisata.value = wisata["jam_tutup"]
+  }
+
+  function confirmUpdate(){
+    $.ajax({
+      type: "POST",
+      url: "../../api-web/api-mysql/product/crud-wisata.php",
+      data: {
+        "crud" : "update",
+        "id_wisata" : id_wisata.value,
+        "nama_wisata" : nama_wisata.value,
+        "alamat" : alamat_wisata.value,
+        "QRcode" : qrcode_wisata.value,
+        "harga" : harga_wisata.value,
+        "lat" : lat_wisata.value,
+        "lon" : lon_wisata.value,
+        "jam_buka" : jam_buka_wisata.value,
+        "jam_tutup" : jam_tutup_wisata.value
+      },
+      success: function(data) {
+        alert(data)
+        window.location.reload(1)
+      }
+    });
+  }
+
     // $(document).ready(function(){
     //   $.get('../../api-web/api-mysql/product/wisata-get-data.php', function(data){
     //     var json = $.parseJSON(data)
